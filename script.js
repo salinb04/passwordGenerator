@@ -13,26 +13,27 @@ function generatePassword() {
   var lowerCase = confirm(
     "Would you like your password to contain lowercase characters?"
   );
-  if (lowerCase === true) {
-  }
 
   var upperCase = confirm(
     "Would you like your password to contain uppercase characters?"
   );
-  if (upperCase === true) {
-  }
 
   var numeric = confirm(
     "Would you like your password to contain numeric characters?"
   );
-  if (numeric === true) {
-  }
 
   var special = confirm(
     "Would you like your password to contain special characters?"
   );
-  if (special === true) {
-  }
+
+  var lowerCharSet = "abcdefghijklmnopqrstuvwxyz";
+  var upperCharSet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  var numericCharSet = "1234567890";
+  var specialCharSet = "!@#$%^&*()-_`~<>.,/|";
+
+  //for (var i = 0, n = characterLength.length; i < length i++) {
+  //  retval += lowerCharSet.charAt(Math.floor(Math.random() * n));
+  //}
 }
 
 // Write password to the #password input
