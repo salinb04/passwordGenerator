@@ -1,12 +1,14 @@
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
 function generatePassword() {
-  var characterLength = prompt(
-    "Choose a password length between 8 and 128 characters."
-  );
-  while (characterLength > 128 && characterLength < 8) {
-    characterLength = prompt(
-      "Please ensure your password is between 8 and 128 characters."
+  var characterLength = 0;
+  while (
+    characterLength < 8 ||
+    characterLength > 128 ||
+    isNaN(characterLength)
+  ) {
+    characterLength = parseInt(
+      prompt("How many characters would you like your password to be?")
     );
   }
 
@@ -31,9 +33,48 @@ function generatePassword() {
   var numericCharSet = "1234567890";
   var specialCharSet = "!@#$%^&*()-_`~<>.,/|";
 
-  //for (var i = 0, n = characterLength.length; i < length i++) {
-  //  retval += lowerCharSet.charAt(Math.floor(Math.random() * n));
-  //}
+  var optionsArray = [];
+
+  if (lowerCase === true) {
+    optionsArray.push(lowerCharSet);
+  }
+
+  if (upperCase) {
+    optionsArray.push(upperCharSet);
+  }
+
+  if (numeric) {
+    optionsArray.push(numericCharSet);
+  }
+
+  if (special) {
+    optionsArray.push(specialCharSet);
+  }
+
+  if (!lowerCase && !upperCase && !numeric && !special) {
+    alert("You must select at least one character set!");
+    return;
+  }
+
+  var password = [];
+  var optionsIndex = 0;
+
+  for (let i = 0; i < characterLength; i++) {
+    if (optionsIndex > optionsArray.length - 1) {
+      optionsIndex = 0;
+    }
+    var currentOption = optionsArray[optionsIndex];
+
+    password.push(randomCharacter(currentOption));
+    optionsIndex = optionsIndex + 1;
+  }
+  return password.join("");
+}
+
+function randomCharacter(characterString) {
+  var randomIndex = Math.floor(Math.random() * characterString.length);
+  var randomCharacter = characterString[randomIndex];
+  return randomCharacter;
 }
 
 // Write password to the #password input
